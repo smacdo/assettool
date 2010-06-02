@@ -1,0 +1,34 @@
+Assettool is a ruby script that helps manage and automate a game's asset
+pipeline process. This tool was created to help my personal OpenGL projects
+along, but my hope is other people will take it for a spin and send in
+feature requests that make it useful to others.
+
+Currently, the tool's main focus is on managing a repository of raw
+assets and converting them into a optimized binary format or a self
+documenting lua data file. Eventually I would like to decouple the
+export and import process (its already somewhat decoupled) to allow for
+arbitrary formats.
+
+The binary format will be documented in FORMAT. It is straight forward and
+simple to use. The lua format is not documented at the moment, but
+it follows the binary format and should be immediately obvious by looking
+at an ouputted file.
+
+What works:
+    - Reads .obj fies and spits out binary .mesh or lua .amesh
+    - Reads .mtl files and spits out binary .materia or lua .amaterial
+    - Can write to disk or send output to stdout
+
+Coming soon:
+    - MD2/MD3 mesh support
+    - animation support
+
+In the future:
+    - Siginficantly more documentation on how to use
+    - Command line options to control input / output
+    - Move import/export code into a plugin system
+    - Support MD5, 3DS, Ogre
+    - Support obj, mtl export
+    - Archive support
+    - Mesh optimizations
+    - Unit testing
