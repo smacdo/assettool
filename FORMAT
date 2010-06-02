@@ -1,0 +1,91 @@
+///////////////////////////////////////////////////////////////////////
+// File formats
+///////////////////////////////////////////////////////////////////////
+struct Mesh
+{
+    AssetHeader     header;
+    ModelHeader     model;
+    GroupInfo       groups[...];        // always at least one, (_root?)
+    AnimInfo        animations[...];    // always at least one, __default
+    IndexBuffer     index_buffer;
+    VertexBuffer    vertexbuffer;       // this WILL change
+};
+
+///////////////////////////////////////////////////////////////////////
+// Data structures
+///////////////////////////////////////////////////////////////////////
+struct AssetHeader
+{
+    uint8_t transmission_byte;      // Always 89
+    char    filetype[5];            // Always "ASSET"
+    char    assettype[4];           // "MTRL/MESH"
+    uint8_t error_detection[4];     // 13, 10, 26, 10
+    uint8_t data_vers;              // Asset data versioning
+    uint8_t flags;                  // Currently unused
+    char    name[32];               // Name of the asset (null-terminated)
+} __attribute__((__packed__));
+
+struct ModelHeader                  // 16 bytes
+{
+    uint8_t version;                // 1, 1 model type (1=v.anim, 2=bone)
+    uint8_t flags;                  // 1, 2 flags for model  
+    uint8_t mesh_groups;            // 1, 3 number of mesh groups per frame
+    uint8_t anim_groups;            // 1, 4 number of named animations
+    int32_t frame_count;            // 4, 8 number of animation frames
+    int32_t face_count;             // 4, 12 number of faces (vtx/3)
+    int32_t vbuffer_count;          // 4, 16 number of elements in array
+} __attribute__((__packed__));
+
+struct GroupInfo
+{
+    char    name[32];               // 32, 32  name of the mesh subgroup
+    char    material[32];           // 32, 64  name of the material for grp
+    int32_t face_count;             //  4, 68  number of faces in group
+    int32_t face_offset;            //  4, 72  index array offset (*1, not 3)
+} __attribute__((__packed__));
+
+struct AnimInfo
+{
+    char    name[32];               // 32, 32  name of the animation
+    int32_t frames;                 //  4, 36  number of frames in animation
+    int32_t frames_offset;          //  4, 40  offset in frame vb array
+    float   tick_time;              //  4, 44  amount of time per frame
+    int32_t reserved;               //  4, 48  nothing
+} __attribute__((__packed__));
+
+struct MaterialHeader               // 4 bytes
+{
+    uint8_t flags;                  // 1, 1   material flags
+    uint8_t passes;                 // 1, 2   number of passes
+    uint8_t reserved[2];            // 2, 4   reserved
+} __attribute__((__packed__));
+
+struct MaterialPass                 // 64 bytes
+{
+    float ambient[3];               // 12, 12 3-tuple describing ambient color
+    float diffuse[3];               // 12, 24 3-tuple for diffuse color
+    float specular[3];              // 12, 36 3-tuple for specular color
+    float emissive[3];              // 12, 48 Emissive color, must be enabled
+    float alpha;                    //  4, 52 Alpha control (0-1)
+    float shininess;                //  4, 56 How shiny surface is 
+    uint8_t shading_model;          //  1, 57 (0=none,1=flat,2=goruard,3=ph)
+    uint8_t depth_func;             //  1, 58 (0=fail,1=pass,lt,le,eq,ne,gt,ge)
+    uint8_t cull_func;              //  1, 59 (0=none,1=cw,2=ccw)
+    uint8_t polygon_mode;           //  1, 60 (0=solid,1=wireframe,2=points)
+    uint8_t texture_count;          //  1, 61 number of textures to render
+    uint16_t scene_blend_op;        //  1, 63 (compressed)
+    uint8_t flags;                  //  1, 64 set of flags 
+} __attribute__((__packed__));
+
+struct TextureOp                    // 64 bytes
+{
+    float scale[2];                 //  8,  8  x/y scaling factor
+    float rotate[2];                //  8, 16  x/y rotation factor
+    float scroll[2];                //  8, 24  x/y scrolling?
+    uint8_t scale_type_x;           //  1, 25  texture scaling x axis
+    uint8_t scale_type_y;           //  1, 26  texture scaling y axis
+    uint8_t color_op;               //  1, 27  texture operation
+    uint8_t alpha_color_op;         //  1, 28  alpha texture operation
+    uint8_t reserved[4];            //  4, 32  reserved
+    char    texturepath[32];        // 32, 64  path to the texture data
+} __attribute__((__packed__));
