@@ -1,5 +1,8 @@
 package scott.assettool;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
+
 public class Mesh
 {
     public Mesh( String name )

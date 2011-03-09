@@ -1,9 +1,11 @@
 package scott.assettool;
 
+import java.util.ArrayList;
+
 /**
  * Used to keep track of faces in the mesh
  */
-private class FaceGroup
+public class FaceGroup
 {
     public FaceGroup( String name, String material )
     {

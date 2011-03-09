@@ -5,15 +5,19 @@ package scott.assettool;
  */
 public class GeomUtils
 {
-    public static Winding calculateWinding( Vertex a, Vertex b, Vertex c )
+    public static Winding calculateWinding( Vertex vA, Vertex vB, Vertex vC )
     {
         // Calculate the area of the triangle
-        float area = 0.5f * Vector3.Cross( Vector3.Sub( b, a ),
-                                           Vector3.Sub( c, a ) );
+        Vector3   a = vA.position();
+        Vector3   b = vB.position();
+        Vector3   c = vC.position();
+
+        Vector3 tmp = Vector3.cross( Vector3.sub( b, a ), Vector3.sub( c, a ) );
+        float area  = tmp.length() * 0.5f;
 
         if ( area > 0.0f )
         {
-            return Winding.CounterClockWise;
+            return Winding.CounterClockwise;
         }
         else
         {

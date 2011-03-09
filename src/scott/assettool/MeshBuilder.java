@@ -1,5 +1,8 @@
 package scott.assettool;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
+
 /**
  * Constructs meshes on the fly
  */
@@ -22,8 +25,8 @@ public class MeshBuilder
         // Make sure the group does not exist
         if ( m_groupNameMap.containsKey( group ) )
         {
-            throw new MeshBuilderException(
-                "Mesh already contains group '" + group + "'" );
+    //        throw new MeshBuilderException(
+    //          "Mesh already contains group '" + group + "'" );
         }
 
         FaceGroup fg = new FaceGroup( group, material );
@@ -40,8 +43,8 @@ public class MeshBuilder
         // Make sure group exists
         if (! m_groupNameMap.containsKey( group ) )
         {
-            throw new MeshBuilderException(
-                    "Mesh does not define group '" + group + "'" );
+    //        throw new MeshBuilderException(
+    //                "Mesh does not define group '" + group + "'" );
         }
 
         FaceGroup fg = new FaceGroup( group, material );
@@ -62,21 +65,21 @@ public class MeshBuilder
     void addFace( String group, Vertex va, Vertex vb, Vertex vc )
     {
         // Make sure the vertices are correctly specified
-        if ( calculateWinding( va, vb, vc ) != Winding.CounterClockwise )
-        {
-            throw new MeshBuilderException(
-                    "Vertex winding is not counter clockwise"
-            );
-        }
+   //     if ( calculateWinding( va, vb, vc ) != Winding.CounterClockwise )
+   //     {
+   //         throw new MeshBuilderException(
+   //                 "Vertex winding is not counter clockwise"
+   //         );
+   //     }
 
         // Find a stored vertex offset for each given vertex. Either
         // they already exist in the vertex buffer, or we need to create
         // it.
-        int a = findVertexOffset( va );
-        int b = findVertexOffset( vb );
-        int c = findVertexOffset( vc );
+   //     int a = findVertexOffset( va );
+   //     int b = findVertexOffset( vb );
+   //     int c = findVertexOffset( vc );
 
-        m_faceGroups.get( group ).addFace( a, b, c );
+   //     m_faceGroups.get( group ).addFace( a, b, c );
     }
 
     /**
@@ -90,7 +93,7 @@ public class MeshBuilder
                   Vertex c,
                   Vertex d )
     {
-        throw new MeshBuilderException( "Not supported yet" );
+  //      throw new MeshBuilderException( "Not supported yet" );
     }
 
     /**
@@ -104,23 +107,7 @@ public class MeshBuilder
 
     private int getVertexOffset( Vertex v )
     {
-
-    }
-
-    private Winding calculateWinding( Vertex a, Vertex b, Vertex c )
-    {
-        // Calculate the area of the triangle
-        float area = 0.5f * Vector3.Cross( Vector3.Sub( b, a ),
-                                           Vector3.Sub( c, a ) );
-
-        if ( area > 0.0f )
-        {
-            return Winding.CounterClockWise;
-        }
-        else
-        {
-            return Winding.Clockwise;
-        }
+        return 0;
     }
 
     /**
@@ -141,7 +128,7 @@ public class MeshBuilder
     /**
      * Cache of vertices in the mesh, and their vertex buffer position
      */
-    private Hashtable<Vertex, int> m_vertexCache;
+//    private Hashtable<Vertex, int> m_vertexCache;
 
     /**
      * List of bones in the mesh
@@ -163,4 +150,6 @@ public class MeshBuilder
      * Default number of vertices in a mesh
      */
     private static final int DefaultVertexCount = 4096;
+
+    private static final int DefaultBoneCount = 64;
 }
