@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class ObjReader
 {
-    public void import( FileReader input ) throws IOException
+    public void read( FileReader input )
+        throws IOException
     {
         Scanner scanner = new Scanner( input );
 
