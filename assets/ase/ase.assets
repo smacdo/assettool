@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<assets>
+	<!-- ASE meshes -->
+	<model name="models/cube2">
+		<mesh filename="cube.ase" type="ase" />
+		<material name="default" />
+	</model>
+	
+	<model name="models/fish">
+		<mesh filename="fish.ase" type="ase" />
+		<material name="default" />
+	</model>
+	
+	<model name="models/polyfish">
+		<mesh filename="polyfish.ase" type="ase" />
+		<material name="default" />
+	</model>
+	
+	<model name="models/sphere">
+		<mesh filename="sphere.ase" type="ase" />
+		<material name="default" />
+	</model>
+</assets>

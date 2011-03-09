@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<assets>
+	<model name="models/cube">
+		<mesh filename="cube.obj" type="obj" />
+		<material name="default" />
+	</model>
+	
+	<model name="models/diamond">
+		<mesh filename="diamond.obj" type="obj" />
+		<material name="default" />
+	</model>
+	
+	<model name="models/dodecahedron">
+		<mesh filename="dodecahedron.obj" type="obj" />
+		<material name="default" />
+	</model>
+	
+	<model name="models/gourd">
+		<mesh filename="gourd.obj" type="obj" />
+		<material name="default" />
+	</model>
+	
+	<model name="models/human1">
+		<mesh filename="humanoid_quad.obj" type="obj" />
+		<material name="default" />
+	</model>
+	
+	<model name="models/human2">
+		<mesh filename="humanoid_tri.obj" type="obj" />
+		<material name="default" />
+	</model>
+	
+	<model name="models/icosahedron">
+		<mesh filename="icosahedron.obj" type="obj" />
+		<material name="default" />
+	</model>
+	
+	<model name="models/shuttle">
+		<mesh filename="shuttle.obj" type="obj" />
+		<material name="default" />
+	</model>
+	
+	<model name="models/teapot">
+		<mesh filename="teapot.obj" type="obj" />
+		<material name="default" />
+	</model>	
+</assets>

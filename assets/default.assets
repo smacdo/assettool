@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<assetlist>
+	<package name="default">
+		<!-- First materials -->
+		<materialslib filename="default.materialslib" />
+		<shaderslib filename="shaders/default.shaderslib" />
+		
+		<import filename="simplecube.asset" />
+		<import filename="ase/ase.assets" />
+		<import filename="obj/obj.assets" />
+	</package>
+</assetlist>

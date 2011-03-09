@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<assets>
+	<material name="materials/simplecube">
+		<default lighting="specular">
+			<ambient r="0.0000" g="0.0000" b="0.0000" />
+			<diffuse r="0.6400" g="0.6400" b="0.6400" />
+			<specular r="0.500" g="0.5000" b="0.5000" s="96.078431" />
+			<alpha v="0.4300" />
+			
+			<diffusemap filename="sampleuv_Cube.tga" />
+		</default>
+	</material>
+
+	<model name="models/simplecube">
+		<mesh filename="simplecube.obj" type="obj" />
+		<material name="materials/simplecube" />
+	</model>
+</assets>
