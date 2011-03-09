@@ -2,6 +2,13 @@ package scott.assettool;
 
 public class Quat
 {
+    /**
+     * Quaternion constructor
+     * @param qx
+     * @param qy
+     * @param qz
+     * @param qw
+     */
     public Quat( float qx, float qy, float qz, float qw )
     {
         m_qx = qx;
@@ -10,7 +17,15 @@ public class Quat
         m_qw = qw;
     }
 
-    public Quad FromUnitQuat( float qx, float qy, float qz )
+    /**
+     * Construct a quaternion from the q(x,y,z) portion of a unit quaternion
+     * 
+     * @param qx
+     * @param qy
+     * @param qz
+     * @return
+     */
+    public Quat FromUnitQuat( float qx, float qy, float qz )
     {
         float  t = 1.0f - ( qx * qx ) - ( qy * qy ) - ( qz * qz );
         float qw = 0.0f;
@@ -21,10 +36,10 @@ public class Quat
         }
         else
         {
-            qw = -Math.squareRoot( t );
+            qw = (float) -Math.sqrt( t );
         }
 
-        return Quat( qx, qy, qz, qw );
+        return new Quat( qx, qy, qz, qw );
     }
 
     public float qx()
@@ -49,18 +64,16 @@ public class Quat
 
     public static Quat mul( Quat lhs, Quat rhs )
     {
-        float rx, ry, rz, rw;
+        float qx, qy, qz, qw;
+        float lx = lhs.m_qx, ly = lhs.m_qy, lz = lhs.m_qz, lw = lhs.m_qw;
+        float rx = rhs.m_qx, ry = rhs.m_qy, rz = rhs.m_qz, rw = rhs.m_qw;
 
-        rx = (lhs.m_x * rhs.m_w) + (lhs.m_w * rhs.m_x) +
-             (lhs.m_y * rhs.m_z) - (lhs.m_z * rhs.m_y);
-        ry = (lhs.m_y * rhs.m_w) + (lhs.m_w * rhs.m_y) +
-             (lhs.m_z * rhs.m_x) - (lhs.m_x * rhs.m_z);
-        rz = (lhs.m_z * rhs.m_w) + (lhs.m_w * rhs.m_z) +
-             (lhs.m_x * rhs.m_y) - (lhs.m_y * rhs.m_x);
-        rw = (lhs.m_w * rhs.m_w) + (lhs.m_x * rhs.m_x) -
-             (lhs.m_y * rhs.m_y) - (lhs.m_z * rhs.m_z);
+        qx = (lx * rw) + (lw * rx) + (ly * rz) - (lz * ry);
+        qy = (ly * rw) + (lw * ry) + (lz * rx) - (lx * rz);
+        qz = (lz * rw) + (lw * rz) + (lx * ry) - (ly * rx);
+        qw = (lw * rw) + (lx * rx) - (ly * ry) - (lz * rz);
 
-        return new Quat( rx, ry, rz, rw );
+        return new Quat( qx, qy, qz, qw );
     }
 
     public String toString()
