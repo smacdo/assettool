@@ -7,7 +7,8 @@ import java.util.Scanner;
 
 public class ObjReader
 {
-    public ObjReader()
+    public void read( FileReader input )
+        throws IOException
     {
         m_groups            = new ArrayList<String>( 8 );
         m_materialMap       = new Hashtable<String, String>();

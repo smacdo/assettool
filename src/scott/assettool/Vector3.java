@@ -1,6 +1,6 @@
 package scott.assettool;
 
-public class Vector3
+public final class Vector3 extends Vector
 {
     public Vector3( float x, float y, float z )
     {
@@ -14,6 +14,20 @@ public class Vector3
         m_x = v.m_x;
         m_y = v.m_y;
         m_z = v.m_z;
+    }
+
+    public Vector3 normalized()
+    {
+        float abv = Math.sqrt( m_x * m_x + m_y * m_y + m_z * m_z );
+
+        if ( abv == 0.0f )  // equals close?
+        {
+            throw new MathException("Cannot normalize this vector");
+        }
+
+        double k = 1.0 / abv;
+
+        return new Vector3( m_x * k, m_y * k, m_z * k );
     }
 
     public float x()
@@ -34,15 +48,6 @@ public class Vector3
     public String toString()
     {
         return "<vec3; " + m_x + ", " + m_y + ", " + m_z + ">";
-    }
-
-    public static Vector3 add( Vector3 lhs, Vector3 rhs )
-    {
-        return new Vector3(
-            lhs.m_x + rhs.m_x,
-            lhs.m_y + rhs.m_y,
-            lhs.m_z + rhs.m_z
-        );
     }
 
     private float m_x;
