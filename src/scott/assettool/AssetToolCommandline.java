@@ -8,14 +8,14 @@ public class AssetToolCommandline
     {
         System.out.println( "Hello world" );
 
-        String filename = "assets/obj/teapot.obj";
+        String filename = "assets/hellknight/hellknight.md5mesh";
 
         try
         {
             File inputFile    = new File( filename );
             FileReader reader = new FileReader( inputFile );
 
-            ObjReader objreader = new ObjReader();
+            ObjReader objreader = new Md5MeshReader();
             objreader.read( reader );
         }
         catch ( FileNotFoundException e )

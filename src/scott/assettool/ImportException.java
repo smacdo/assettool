@@ -2,11 +2,11 @@ package scott.assettool;
 
 /**
  *
- * @author scott
+ * @author Scott MacDonald
  */
 public class ImportException extends Exception
 {
-    public ImportException( String message )
+	public ImportException( String message )
     {
         super( message );
     }

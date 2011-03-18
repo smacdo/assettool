@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
 
-public class ObjReader
+public class ObjReader implements IFileParser
 {
     public ObjReader()
     {
