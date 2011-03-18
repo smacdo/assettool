@@ -15,8 +15,8 @@ public class AssetToolCommandline
             File inputFile    = new File( filename );
             FileReader reader = new FileReader( inputFile );
 
-            ObjReader objreader = new Md5MeshReader();
-            objreader.read( reader );
+            IFileParser parser = new Md5MeshReader();
+            parser.read( reader );
         }
         catch ( FileNotFoundException e )
         {

@@ -1,7 +1,9 @@
-package scott.assettool;
+package scott.geometry;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Hashtable;
+import java.util.List;
 
 public class Mesh
 {
@@ -17,7 +19,33 @@ public class Mesh
                  ArrayList<Vertex>    vertices,
                  ArrayList<FaceGroup> facegroups )
     {
-        
+        m_name         = name;
+        m_vertices     = new ArrayList<Vertex>( vertices );
+        m_faceGroups   = new ArrayList<FaceGroup>( facegroups );
+        m_groupNameMap = new Hashtable<String,FaceGroup>();        
+    }
+    
+    /**
+     * Return the name of the mesh
+     * @return Name of the mesh
+     */
+    public String name()
+    {
+        return m_name;
+    }
+    
+    /**
+     * Returns a list of vertices for this mesh
+     * @return
+     */
+    public List<Vertex> vertices()
+    {
+        return Collections.unmodifiableList( m_vertices );
+    }
+    
+    public List<FaceGroup> facegroups()
+    {
+        return Collections.unmodifiableList( m_faceGroups );
     }
 
     /**
@@ -45,38 +73,4 @@ public class Mesh
      * Default number of vertices in a mesh
      */
     private static final int DefaultVertexCount = 4096;
-
-    /**
-     * Used to keep track of faces in the mesh
-     */
-    private class FaceGroup
-    {
-        public FaceGroup( String name, String material )
-        {
-            m_name     = name;
-            m_material = material;
-            m_faces    = new ArrayList<Face>( DefaultFaceCount );
-        }
-
-        /**
-         * Name of the face group
-         */
-        public String m_name;
-
-        /**
-         * Associated material name for the face group
-         */
-        public String m_material;
-
-        /**
-         * List of faces in the group
-         */
-        public ArrayList<Face> m_faces;
-
-        /**
-         * Default number of faces predicted to be in the group
-         * (Used to pre-size face group arrayh)
-         */
-        public static final int DefaultFaceCount = 512;
-    }
 }

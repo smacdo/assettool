@@ -1,4 +1,4 @@
-package scott.assettool;
+package scott.math;
 
 public class Vector2
 {

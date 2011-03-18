@@ -1,4 +1,4 @@
-package scott.assettool;
+package scott.geometry;
 
 public class Face
 {

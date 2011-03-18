@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
 
+import scott.math.*;
+import scott.geometry.*;
+
 public class ObjReader implements IFileParser
 {
     public ObjReader()

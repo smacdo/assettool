@@ -1,4 +1,6 @@
-package scott.assettool;
+package scott.geometry;
+
+import scott.math.*;
 
 /**
  * Useful methods

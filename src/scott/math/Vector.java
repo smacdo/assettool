@@ -1,4 +1,4 @@
-package scott.assettool;
+package scott.math;
 
 /**
  * Base vector class. Contains utility methods for dealing with vectors
